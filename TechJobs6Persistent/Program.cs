@@ -6,6 +6,15 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
+//new below
+var connectionString = "server=localhost;user=TechJobs;password=TechJobs;database=tech-jobs";
+var serverVersion = new MySqlServerVersion(new Version(8, 0, 0));
+
+builder.Services.AddDbContext<JobDbContext>(dbContextOptions => dbContextOptions.UseMySql(connectionString, serverVersion));
+
+
+//new above
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
