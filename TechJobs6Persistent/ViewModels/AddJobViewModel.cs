@@ -2,6 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using TechJobs6Persistent.Models;
+using TechJobs6Persistent.Data;
 
 namespace TechJobs6Persistent.ViewModels
 {
@@ -18,10 +19,17 @@ namespace TechJobs6Persistent.ViewModels
 
         public List<Employer> SelectListItem { get; set;} //instantiate?
 
-        public AddJobViewModel(List<Employer> selectListItem)
+        
+        public AddJobViewModel(List<Employer> selectListItem)//List<Employer> selectListItem
         {
             SelectListItem = selectListItem;
         }
+
+        public AddJobViewModel()
+        {
+           
+        }
+
     }
 }
 
