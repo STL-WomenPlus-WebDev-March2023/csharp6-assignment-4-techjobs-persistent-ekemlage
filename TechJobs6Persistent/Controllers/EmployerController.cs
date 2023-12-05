@@ -27,7 +27,7 @@ namespace TechJobs6Persistent.Controllers
         public IActionResult Index()
         {
             List<Employer> employers = context.Employers.ToList();
-            return View(employers);
+            return View(employers); 
         }
 
         [HttpGet]
@@ -49,8 +49,8 @@ namespace TechJobs6Persistent.Controllers
                 };
                 context.Employers.Add(newEmployer);
                 context.SaveChanges();
-                
-                return Redirect("Employer");
+
+                return View(); 
             }
             return View(addEmployerViewModel);
         }
