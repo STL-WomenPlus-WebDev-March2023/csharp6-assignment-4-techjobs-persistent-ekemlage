@@ -29,15 +29,29 @@ namespace TechJobs6Persistent.Controllers
             return View(jobs);
         }
 
+        [HttpGet] //added httpget
         public IActionResult Add()
         {
-            return View();
+            AddJobViewModel addJobViewModel = new AddJobViewModel(context.Employers.ToList()); //added parameter to AddJobViewModel
+            return View(addJobViewModel);
         }
 
         [HttpPost]
-        public IActionResult ProcessAddJobForm()
+        public IActionResult Add(AddJobViewModel addJobViewModel)
         {
-            return View();
+            if (ModelState.IsValid)
+            {
+                Job newJob = new Job
+                {
+                    Name = addJobViewModel.Name,
+                    Employer = addJobViewModel.Employer,
+                    EmployerId = addJobViewModel.Employer.Id,
+                };
+                context.Jobs.Add(newJob);
+                context.SaveChanges();
+                return Redirect("/Jobs");
+            }
+            return View(addJobViewModel);
         }
 
         public IActionResult Delete()

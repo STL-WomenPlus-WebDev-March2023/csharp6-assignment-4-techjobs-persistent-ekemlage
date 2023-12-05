@@ -49,7 +49,6 @@ namespace TechJobs6Persistent.Controllers
                 };
                 context.Employers.Add(newEmployer);
                 context.SaveChanges();
-
                 return View(); 
             }
             return View(addEmployerViewModel);
