@@ -37,7 +37,7 @@ namespace TechJobs6Persistent.Controllers
         }
 
         [HttpPost]
-        public IActionResult Add(AddJobViewModel addJobViewModel)
+        public IActionResult Add(AddJobViewModel addJobViewModel`\
         {
             if (ModelState.IsValid)
             {
