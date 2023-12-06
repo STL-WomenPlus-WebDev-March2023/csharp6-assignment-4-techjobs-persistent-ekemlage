@@ -30,9 +30,9 @@ namespace TechJobs6Persistent.Controllers
         }
 
         [HttpGet] //added httpget
-        public IActionResult Add()
+        public IActionResult Add() //added argument (prev none)
         {
-            AddJobViewModel addJobViewModel = new AddJobViewModel(context.Employers.ToList()); //added parameter to AddJobViewModel
+            AddJobViewModel addJobViewModel = new AddJobViewModel(context.Employers.ToList()); 
             //AddJobViewModel addJobViewModel = new AddJobViewModel();
             return View(addJobViewModel);
         }
@@ -53,6 +53,7 @@ namespace TechJobs6Persistent.Controllers
                 context.SaveChanges();
                 return Redirect("/Jobs");
             }
+
             return View(addJobViewModel);
         }
 

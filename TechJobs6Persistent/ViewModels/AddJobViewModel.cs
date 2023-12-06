@@ -17,10 +17,10 @@ namespace TechJobs6Persistent.ViewModels
 
         public Employer Employer { get; set;}
 
-        public List<Employer> SelectListItem { get; set;} //instantiate?
+        public List<Employer> SelectListItem { get; set;} 
 
         
-        public AddJobViewModel(List<Employer> selectListItem)//List<Employer> selectListItem
+        public AddJobViewModel(List<Employer> selectListItem)
         {
             SelectListItem = selectListItem;
         }

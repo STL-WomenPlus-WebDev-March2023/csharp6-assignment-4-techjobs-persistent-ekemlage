@@ -16,7 +16,7 @@
         <label asp-for="Employer">Employer</label>
         <input asp-for="Employer" class="form-control" name="Employer" list="SelectListItem">
         <datalist id="SelectListItem">
-            @foreach (Employer listItem in Model.SelectListItem) //Model.SelectListItem
+            @foreach (Employer listItem in Model.SelectListItem) //'Object reference not set to an instance of an object.' // TechJobs6Persistent.ViewModels.AddJobViewModel.SelectListItem.get returned null.
             {
                 <option value=@listItem.Name />
             }
