@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using TechJobs6Persistent.Data;
 using TechJobs6Persistent.Models;
 using TechJobs6Persistent.ViewModels;
@@ -29,13 +31,19 @@ namespace TechJobs6Persistent.Controllers
             return View(jobs);
         }
 
+        /*
+
         [HttpGet] //added httpget
         public IActionResult Add() //added argument (prev none)
         {
-            AddJobViewModel addJobViewModel = new AddJobViewModel(context.Employers.ToList()); 
+            AddJobViewModel addJobViewModel = new AddJobViewModel(context.Employers.ToList()); //old from last night
             //AddJobViewModel addJobViewModel = new AddJobViewModel();
             return View(addJobViewModel);
         }
+
+        */
+
+        /*
 
         [HttpPost]
         public IActionResult Add(AddJobViewModel addJobViewModel)
@@ -46,16 +54,73 @@ namespace TechJobs6Persistent.Controllers
                 Job newJob = new Job
                 {
                     Name = addJobViewModel.Name,
-                    Employer = addJobViewModel.Employer,
+                    Employer = addJobViewModel.Employer,                  //old from last night
                     EmployerId = addJobViewModel.Employer.Id,
                 };
                 context.Jobs.Add(newJob);
                 context.SaveChanges();
-                return Redirect("/Jobs");
+                return RedirectToAction("Add");
             }
 
             return View(addJobViewModel);
         }
+
+        */
+
+        public IActionResult Add()
+        {
+            List<Employer> employers = context.Employers.ToList();
+            AddJobViewModel addJobViewModel = new AddJobViewModel(employers);  //new from today
+
+            return View(addJobViewModel);
+        }
+
+
+        [HttpPost]
+        public IActionResult Add(AddJobViewModel addJobViewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                Employer theEmployer = context.Employers.Find(addJobViewModel.EmployerId);
+                Job newJob = new Job
+                {
+                    Name = addJobViewModel.Name,
+                    Employer = theEmployer
+                };
+
+                context.Jobs.Add(newJob);
+                context.SaveChanges();
+
+                return Redirect("Index"); 
+            }
+
+            return View(addJobViewModel);
+        }
+
+        /* last jamey saw:
+        [HttpPost]
+        public IActionResult Add(AddJobViewModel addJobViewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                Employer newEmployer = new Employer
+                {
+                    Name = addJobViewModel.Employer.Name,
+                                                            //new tonight from book
+                    Id = addJobViewModel.Employer.Id,
+                };
+
+                context.Employers.Add(newEmployer);
+                context.SaveChanges();
+
+                return View(addJobViewModel); //idk
+            }
+
+            return View(addJobViewModel);
+        }
+        */
+
+
 
         public IActionResult Delete()
         {

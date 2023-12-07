@@ -12,20 +12,17 @@
     </div>
     <br />
 
+
     <div class="form-group">
-        <label asp-for="Employer">Employer</label>
-        <input asp-for="Employer" class="form-control" name="Employer" list="SelectListItem">
-        <datalist id="SelectListItem">
-            @foreach (Employer listItem in Model.SelectListItem) //'Object reference not set to an instance of an object.' // TechJobs6Persistent.ViewModels.AddJobViewModel.SelectListItem.get returned null.
-            {
-                <option value=@listItem.Name />
-            }
-        </datalist>
-        <span asp-validation-for="Employer"></span>
+        <label asp-for="EmployerId">Employer</label>
+        <select asp-for="EmployerId" asp-items="Model.SelectListItems"></select>
         <a asp-area="" asp-controller="Employer" asp-action="Add">Add Employer</a>
     </div>
     <br />
 
+
+
     <input type="submit" value="Add Job" />
 </form>
+
 
