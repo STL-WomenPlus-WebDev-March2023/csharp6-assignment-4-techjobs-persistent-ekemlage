@@ -31,41 +31,7 @@ namespace TechJobs6Persistent.Controllers
             return View(jobs);
         }
 
-        /*
-
-        [HttpGet] //added httpget
-        public IActionResult Add() //added argument (prev none)
-        {
-            AddJobViewModel addJobViewModel = new AddJobViewModel(context.Employers.ToList()); //old from last night
-            //AddJobViewModel addJobViewModel = new AddJobViewModel();
-            return View(addJobViewModel);
-        }
-
-        */
-
-        /*
-
-        [HttpPost]
-        public IActionResult Add(AddJobViewModel addJobViewModel)
-        {
-
-            if (ModelState.IsValid)
-            {
-                Job newJob = new Job
-                {
-                    Name = addJobViewModel.Name,
-                    Employer = addJobViewModel.Employer,                  //old from last night
-                    EmployerId = addJobViewModel.Employer.Id,
-                };
-                context.Jobs.Add(newJob);
-                context.SaveChanges();
-                return RedirectToAction("Add");
-            }
-
-            return View(addJobViewModel);
-        }
-
-        */
+       
 
         public IActionResult Add()
         {
@@ -97,28 +63,7 @@ namespace TechJobs6Persistent.Controllers
             return View(addJobViewModel);
         }
 
-        /* last jamey saw:
-        [HttpPost]
-        public IActionResult Add(AddJobViewModel addJobViewModel)
-        {
-            if (ModelState.IsValid)
-            {
-                Employer newEmployer = new Employer
-                {
-                    Name = addJobViewModel.Employer.Name,
-                                                            //new tonight from book
-                    Id = addJobViewModel.Employer.Id,
-                };
-
-                context.Employers.Add(newEmployer);
-                context.SaveChanges();
-
-                return View(addJobViewModel); //idk
-            }
-
-            return View(addJobViewModel);
-        }
-        */
+      
 
 
 
